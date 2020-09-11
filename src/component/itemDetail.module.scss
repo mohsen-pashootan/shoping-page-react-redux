@@ -1,0 +1,39 @@
+.detail-container {
+    min-height: 700px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    margin-bottom: 27px;
+
+
+    .image-container {
+        // width: 57%;
+        min-height: 400px;
+        justify-self: flex-start;
+
+        .detail-image {
+            height: 500px;
+            width: 500px;
+        }
+    }
+
+
+
+    .detail-info {
+        width: 40%;
+        min-height: 400px;
+        margin: 0px 20px;
+        justify-self: flex-end;
+
+        .detail-title {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 32px;
+            margin-top: 4px 20px;
+
+        }
+
+    }
+}
