@@ -1,19 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import styles from "../app.module.scss";
+import styles from "./cart.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import CartItem from "./cartItem";
 import { clearCart } from "../stateManager/actionCreator";
 
 export default function Cart({ toggle, onCloseCart }) {
-  const { selectedItems, sum } = useSelector((state) => state);
+  const { selectedItems, totalSum } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   function handleClearCart() {
     dispatch(clearCart());
   }
-  const newSum = sum.map((s) => s.price).reduce((a, b) => a + b, 0);
-  console.log(newSum);
   return ReactDOM.createPortal(
     <div
       className={
@@ -33,7 +31,7 @@ export default function Cart({ toggle, onCloseCart }) {
         <div className={styles["cart-footer"]}>
           <h3>
             your total : ${" "}
-            <span className={styles["cart-total"]}>{newSum}</span>
+            <span className={styles["cart-total"]}>{totalSum}</span>
           </h3>
           <button
             className={styles["clear-cart banner-btn"]}

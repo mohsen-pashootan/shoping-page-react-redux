@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import styles from "../app.module.scss";
+import styles from "./layout.module.scss";
 import Cart from "../cart/cart";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Layout({ children }) {
   const [toggle, setToggle] = useState(false);
@@ -19,9 +20,11 @@ export default function Layout({ children }) {
       <Cart toggle={toggle} onCloseCart={handleCartClose} />
       <nav className={styles["navbar"]}>
         <div className={styles["navbar-center"]}>
-          <span className={styles["nav-icon"]}>
-            <i className="fas fa-bars"></i>
-          </span>
+          <Link to={"/shop"}>
+            <span className={styles["nav-icon"]}>
+              <i className="fas fa-bars"></i>
+            </span>
+          </Link>
           <img src="./images/logo.svg" alt="Comphy house"></img>
           <div className={styles["cart-btn"]}>
             <span className={styles["nav-icon"]} onClick={handleCartOpen}>

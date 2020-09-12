@@ -5,6 +5,11 @@ const productItems = [...Products.items];
 export function getProductItems() {
   return fakeApiCall(productItems);
 }
+export function getProductDetail(id) {
+  return fakeApiCall(productItems).then((data) =>
+    data.find((item) => item.sys.id === id)
+  );
+}
 
 function fakeApiCall(values) {
   return new Promise((resolve) => {
@@ -13,19 +18,3 @@ function fakeApiCall(values) {
     }, 500);
   });
 }
-
-// class Products {
-//     constructor(id,title,url,price,description) {
-//       this.id = id ;
-//       this.title = title ;
-//       this.image = url;
-//       this.price=price;
-//       this.description=description;
-//     }
-//   }
-
-// function mapper(){
-// arr.map(item =>  )
-//     return
-
-// }

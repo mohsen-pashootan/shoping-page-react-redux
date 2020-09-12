@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../app.module.scss";
+import styles from "./cartItem.module.scss";
 import { useDispatch } from "react-redux";
 import {
   itemIncreased,
