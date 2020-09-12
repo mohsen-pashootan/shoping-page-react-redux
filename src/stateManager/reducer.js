@@ -28,14 +28,29 @@ export default function reducer(state = INIT_STATE, action) {
             title: item.fields.title,
             url: item.fields.image.fields.file.url,
             price: item.fields.price,
-            description:
-              "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
+            description: item.fields.description,
           })
       );
       return {
         ...state,
         loading: false,
         products: newProducts,
+      };
+
+    case "PRODUCT_DETAIL_LOADED":
+      const newProductDetail = new Product({
+        id: action.payload.sys.id,
+        title: action.payload.fields.title,
+        url: action.payload.fields.image.fields.file.url,
+        price: action.payload.fields.price,
+        description: action.payload.fields.description,
+      });
+      const detail = [];
+      detail.push(newProductDetail);
+      return {
+        ...state,
+        loading: false,
+        selectedDetail: detail,
       };
 
     case "LOADING":
@@ -189,23 +204,6 @@ export default function reducer(state = INIT_STATE, action) {
         cartItems: null,
         sum: [],
         totalSum: null,
-      };
-
-    case "PRODUCT_DETAIL_LOADED":
-      const newProductDetail = new Product({
-        id: action.payload.sys.id,
-        title: action.payload.fields.title,
-        url: action.payload.fields.image.fields.file.url,
-        price: action.payload.fields.price,
-        description:
-          "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
-      });
-      const detail = [];
-      detail.push(newProductDetail);
-      return {
-        ...state,
-        loading: false,
-        selectedDetail: detail,
       };
 
     default:
