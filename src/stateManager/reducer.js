@@ -32,7 +32,6 @@ export default function reducer(state = INIT_STATE, action) {
               "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
           })
       );
-      console.log(newProducts);
       return {
         ...state,
         loading: false,
