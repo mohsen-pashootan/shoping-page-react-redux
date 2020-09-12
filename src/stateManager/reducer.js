@@ -171,12 +171,16 @@ export default function reducer(state = INIT_STATE, action) {
       const sumToRemove = state.sum.filter(
         (item) => item.id !== action.payload
       );
+      const removedTotalSum = sumToRemove
+        .map((s) => s.price)
+        .reduce((a, b) => a + b, 0);
 
       return {
         ...state,
         selectedItems: newSelectedArray3,
         cartItems: state.cartItems - num,
         sum: sumToRemove,
+        totalSum: removedTotalSum,
       };
 
     case "CLEAR_CART":
@@ -185,6 +189,7 @@ export default function reducer(state = INIT_STATE, action) {
         selectedItems: [],
         cartItems: null,
         sum: [],
+        totalSum: null,
       };
 
     case "PRODUCT_DETAIL_LOADED":
