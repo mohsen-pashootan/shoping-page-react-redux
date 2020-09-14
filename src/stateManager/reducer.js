@@ -87,7 +87,10 @@ export default function reducer(state = INIT_STATE, action) {
           price: multipatePrice,
         });
       }
-      const newTotalSum = newSum.map((s) => s.price).reduce((a, b) => a + b, 0);
+      const newTotalSum = newSum
+        .map((s) => s.price)
+        .reduce((a, b) => a + b, 0)
+        .toFixed(2);
       return {
         ...state,
         selectedItems: newSelectedArray,
@@ -107,7 +110,7 @@ export default function reducer(state = INIT_STATE, action) {
         const newSelectedItem = {
           id: proDetail.id,
           title: proDetail.title,
-          image: proDetail.image,
+          image: proDetail.image.slice(1, 23),
           price: proDetail.price,
           count: 1,
         };
@@ -132,7 +135,8 @@ export default function reducer(state = INIT_STATE, action) {
       }
       const detailTotalSum = detailSum
         .map((s) => s.price)
-        .reduce((a, b) => a + b, 0);
+        .reduce((a, b) => a + b, 0)
+        .toFixed(2);
 
       return {
         ...state,
@@ -149,8 +153,11 @@ export default function reducer(state = INIT_STATE, action) {
       const newSelectedArray2 = [...state.selectedItems];
       const newSum2 = [...state.sum];
 
-      if (state.selectedItems[index2].count === 0) {
+      if (state.selectedItems[index2].count === 1) {
         newSelectedArray2.splice(index2, 1);
+        let priceIndex = null;
+        priceIndex = newSum2.findIndex((x) => x.id === action.payload);
+        newSum2.splice(priceIndex, 1);
       } else {
         newSelectedArray2.splice(index2, 1, {
           ...state.selectedItems[index2],
@@ -166,7 +173,8 @@ export default function reducer(state = INIT_STATE, action) {
       }
       const decreasedTotalSum = newSum2
         .map((s) => s.price)
-        .reduce((a, b) => a + b, 0);
+        .reduce((a, b) => a + b, 0)
+        .toFixed(2);
       return {
         ...state,
         selectedItems: newSelectedArray2,

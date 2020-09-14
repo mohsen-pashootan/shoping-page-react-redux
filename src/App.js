@@ -24,7 +24,7 @@ function App() {
         <Layout>
           <Route path="/shop" component={Shop}></Route>
           <Route path="/productDetail/:id" component={ProductDetail}></Route>
-          <Redirect from="/" exact to="/shop" />
+          {/* <Redirect from="/" exact to="/shop" /> */}
         </Layout>
       </Switch>
     </Router>
